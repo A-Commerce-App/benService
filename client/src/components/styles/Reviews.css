@@ -1,0 +1,124 @@
+.headline {
+  font-family: 'PT Sans';
+  font-weight: 700;
+  font-size: 1.3em;
+  margin: 0;
+}
+
+.select {
+  font-family: 'PT Sans';
+  font-size: .7em;
+  background-color: #f1f2f2;
+  padding: 1px 40px 1px 3px;
+  margin-bottom: 22px;
+  margin-top: 30px;
+  border-radius: 5px;
+}
+
+.filters {
+  font-family: 'PT Sans';
+  font-weight: 700;
+  font-size: 1em;
+  margin: 0 10px 0 0;
+}
+
+.blueText {
+  color: #007185;
+  font-family: 'PT Sans';
+  margin: 0;
+  font-size: .9em;
+}
+
+.blueText:hover {
+  color: #C7511F;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.noReviews {
+  font-family: 'PT Sans';
+  font-weight: 700;
+  font-size: 1em;
+}
+
+.highlight {
+  background-color: #FFEBB7;
+}
+
+.reviewItemContainer {
+  margin: 20px 0;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+.reviewItemHeadline {
+  font-family: 'PT Sans';
+  font-weight: 700;
+  font-size: 1em;
+  margin-left: 8px;
+}
+
+.reviewText {
+  font-family: 'PT Sans';
+  font-size: 0.9em;
+  margin: 5px 0 9px 0;
+  max-width: 585px;
+}
+
+.reviewGrayText {
+  font-family: 'PT Sans';
+  font-size: .9em;
+  color: #565959;
+  margin: 3px 0 0 0;
+}
+
+.comment {
+  font-family: 'PT Sans';
+  font-size: .9em;
+  color: #565959;
+  margin: 3px 0 0 0;
+  cursor: pointer;
+}
+
+.report {
+  font-family: 'PT Sans';
+  font-size: .9em;
+  color: #565959;
+  width: 90px;
+  margin: 3px 0 0 0;
+  cursor: pointer;
+}
+
+.thinLine {
+  border-left: 1px solid #d1d1d1;
+  padding: 0 15px;
+  line-height: 100%;
+}
+
+.verified {
+  font-family: 'PT Sans';
+  font-weight: 700;
+  font-size: .8em;
+  color: #c45500;
+  margin: 3px 0 0 0;
+}
+
+.helpfulBtn {
+  font-family: 'PT Sans';
+  height: 29px;
+  width: 98px;
+  padding: 1px 22px;
+  cursor: pointer;
+  opacity: .9;
+  margin-right: 18px;
+}

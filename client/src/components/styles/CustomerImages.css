@@ -1,0 +1,91 @@
+.headline {
+  font-family: 'PT Sans';
+  font-size: 1.3em;
+  margin: 0;
+  font-weight: 700;
+}
+
+.noImages {
+  font-family: 'PT Sans';
+  font-size: 1em;
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+.imgStyle {
+  height: 137px;
+  width: 137px;
+  margin-right: 5px;
+  object-fit: cover;
+}
+
+.blueText {
+  color: #007185;
+  font-family: 'PT Sans';
+  margin: 0;
+  font-size: .9em;
+}
+
+.blueText:hover {
+  color: #C7511F;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.modalHeader {
+  width: 100%;
+  height: 65px;
+  border-bottom: 1px solid #D5D9D9;
+  border-radius: 8px 8px 0 0;
+  background-image: linear-gradient(rgba(251, 251, 251, 1), rgb(242, 242, 242, 1));
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.closeBtn {
+  border: 1px solid #e77600;
+  box-shadow: 0 0 3px 2px rgba(228,121,17,.5);
+  cursor: pointer;
+  height: 45px;
+  width: 45px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.modalStyles {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 90%;
+  background-color: #fff;
+  border-radius: 20px 20px 8px 8px;
+  z-index: 1000;
+}
+
+.overlayStyles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 1000;
+};
+
+.modalMain {
+  display: flex;
+  flex-wrap: wrap;
+  /* why isn't this spacing out the container? */
+  margin-top: 70px;
+  padding: 15px 25px;
+}
+
+.imageStyles {
+  height: 128px;
+  width: 128px;
+  margin: 5px;
+  object-fit: cover;
+};

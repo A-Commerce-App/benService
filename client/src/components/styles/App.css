@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+}
+
+.loading {
+  font-family: 'PT Sans';
+  font-weight: 700;
+  font-size: 1.3em;
+}
+
+.leaveReview {
+  font-family: 'PT Sans';
+  font-weight: 400;
+  margin-top: 75px;
+}
+
+.reviewBtn {
+  margin-top: 15px;
+  font-family: "PT Sans";
+  background-image: linear-gradient(rgb(244, 226, 181), rgb(240, 195, 80));
+  border: 0;
+  border-radius: 3px;
+  padding: 5px 15px;
+  cursor: pointer;
+}

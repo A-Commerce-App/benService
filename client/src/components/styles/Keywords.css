@@ -1,0 +1,30 @@
+.keywordItem {
+  font-family: 'PT Sans';
+  font-size: .9em;
+  height: 20px;
+  background-color: #D7E8EA;
+  padding: 0px 14px 10px 14px;
+  line-height: 29px;
+  margin: 0px 10px 14px 0px;
+  border-bottom: solid 1px #969696;
+  display: inline-block;
+  color: #111;
+}
+
+.selected {
+  composes: keywordItem;
+  color: #fff;
+  background-color: #00464F;
+}
+
+.keywordItem:hover {
+  cursor: pointer;
+}
+
+.spacedHeadline {
+  font-family: 'PT Sans';
+  font-size: 1.3em;
+  margin: 20px 0;
+  font-weight: 700;
+}
+
