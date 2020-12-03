@@ -1,12 +1,14 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const db = require('./db');
 const morgan = require('morgan');
+const models = require('./models.js');
 
 const app = express();
 
 // Serve static index.html file
 app.use(express.static('client/dist'));
-
+app.use(bodyParser.urlencoded({extended: true}))
 // Middleware
 app.use(express.json());
 app.use(morgan('tiny'));
@@ -23,6 +25,46 @@ app.get('/api/reviews/:id', (req, res) => {
     }
   });
 });
+
+app.post('/api/writeReview', async function (req, res) {
+  try{
+    await models.writeReview(req.review);
+    res.status(200).send({});
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
+});
+
+app.post('/api/writeUser', async function (req, res) {
+  try{
+    await models.writeReview(req.user);
+    res.status(200).send({});
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
+});
+
+app.post('/api/writeProduct', async function (req, res) {
+  try{
+    console.log("SLKJSDFLJDS", req.body)
+    await models.writeProductName(req.body.product);
+    res.status(200).send({});
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
+});
+
+
+app.put('/api/updateProductName', async function (req, res) {
+  try{
+    console.log('req.body.product', req.body.product)
+    await models.updateProduct(req.body.product)
+    res.status(200).send({})
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
+})
+
 
 const port = process.env.PORT || 3004;
 app.listen(port, () => {

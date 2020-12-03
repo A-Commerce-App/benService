@@ -27,6 +27,8 @@
     "@babel/preset-react": "^7.12.5",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "axios": "^0.21.0",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
     "css-loader": "^5.0.1",
     "enzyme-to-json": "^3.6.1",
     "express": "^4.17.1",
