@@ -37,7 +37,8 @@ app.post('/api/writeReview', async function (req, res) {
 
 app.post('/api/writeUser', async function (req, res) {
   try{
-    await models.writeReview(req.body.user);
+    console.log('req.body', req.body.user)
+    await models.writeUser(req.body.user);
     res.status(200).send({});
   } catch (err) {
     res.status(404).send(err.message);
