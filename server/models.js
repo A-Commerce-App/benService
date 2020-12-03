@@ -72,7 +72,7 @@ const updateProduct = function(productInfo) {
 
 const deleteProduct = function(productName) {
   return new Promise ((resolve, reject) => {
-    connection.query(`DELETE FROM products WHERE product_name='${productName}';)`, (err) => {
+    connection.query(`DELETE FROM products WHERE product_name='${productName}'`, (err) => {
       if (err) {
         console.log('Error updating Product Name');
         reject(err);

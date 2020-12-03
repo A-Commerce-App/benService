@@ -65,6 +65,15 @@ app.put('/api/updateProductName', async function (req, res) {
   }
 })
 
+app.delete('/api/deleteProduct', async function (req, res) {
+  try{
+    await models.deleteProduct(req.body.product)
+    res.status(200).send({})
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
+})
+
 
 const port = process.env.PORT || 3004;
 app.listen(port, () => {
