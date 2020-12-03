@@ -28,7 +28,7 @@ app.get('/api/reviews/:id', (req, res) => {
 
 app.post('/api/writeReview', async function (req, res) {
   try{
-    await models.writeReview(req.review);
+    await models.writeReview(req.body.review);
     res.status(200).send({});
   } catch (err) {
     res.status(404).send(err.message);
@@ -37,7 +37,7 @@ app.post('/api/writeReview', async function (req, res) {
 
 app.post('/api/writeUser', async function (req, res) {
   try{
-    await models.writeReview(req.user);
+    await models.writeReview(req.body.user);
     res.status(200).send({});
   } catch (err) {
     res.status(404).send(err.message);
@@ -46,7 +46,6 @@ app.post('/api/writeUser', async function (req, res) {
 
 app.post('/api/writeProduct', async function (req, res) {
   try{
-    console.log("SLKJSDFLJDS", req.body)
     await models.writeProductName(req.body.product);
     res.status(200).send({});
   } catch (err) {
@@ -57,7 +56,6 @@ app.post('/api/writeProduct', async function (req, res) {
 
 app.put('/api/updateProductName', async function (req, res) {
   try{
-    console.log('req.body.product', req.body.product)
     await models.updateProduct(req.body.product)
     res.status(200).send({})
   } catch (err) {
