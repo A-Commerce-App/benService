@@ -11,9 +11,9 @@
 2. Navigate into your MySQL shell, create a user and grant them all permissions. For example, once you're in your MySQL shell, run these commands:
 
     `CREATE USER 'hrstudent'@'localhost' IDENTIFIED BY '1q@W3e$R';`
-    
+
     `GRANT ALL PRIVILEGES ON * . * TO 'hrstudent'@'localhost';`
-    
+
     `FLUSH PRIVILEGES;`
 
 # Connecting to and seeding the database
@@ -28,3 +28,11 @@
 
 # Questions, comments, grievances:
 - Email me: joebuono724(at)gmail.com
+
+
+//'VARYING CHARACTER'
+
+
+'once (drain)'
+'psql postgres -U -W -f database/schema2.sql'
+'psql -U ben -d amazonreviews'

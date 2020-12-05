@@ -1,6 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./db');
+
+const mongo = require('./mongo.js');
+
 const morgan = require('morgan');
 const models = require('./models.js');
 
@@ -79,3 +82,7 @@ app.listen(port, () => {
   console.log(`The server is listening on port ${port}...`);
 });
 
+mongo.db.on('error', () => {console.log('error connecting to DB')});
+mongo.db.once('open', function(){
+  console.log('Connected to SDC')
+});
