@@ -6,14 +6,63 @@ const dataStuff = require('../postgresJSON.js')
 var Stream1 = fs.createWriteStream('./postgresProducts.csv')
 var Stream2 = fs.createWriteStream('./postgresUsers.csv')
 var Stream3 = fs.createWriteStream('./postgresReviews.csv')
-//var Stream4 = fs.createWriteStream('./postgresJSON.JSON');
+var Stream4 = fs.createWriteStream('./postgresJSON.JSON');
 
+function writeSomeProducts() {
+  var tObj = Math.floor(Math.random() * 1000);
+  let randomProductName = dataStuff[tObj].product_name;
+  return `${randomProductName}\n`;
+}
+
+function writeSomeUsers() {
+  let randomUserName = faker.internet.userName();
+  let randomCountry = (Math.random() <= .7) ? 'the United States' : faker.address.country();
+  let randomAvatar = faker.image.imageUrl();
+  //let randomAvatar = s3AvatarDomain + randomAvatars[i];
+  return `${randomUserName}| ${randomCountry}| ${randomAvatar}\n`;
+}
+
+function writeSomeReviews() {
+      let product_id = Math.floor(Math.random() * 9999999) + 1;
+      let user_id = Math.floor(Math.random() * 9999) + 1;
+      let overall_rating = merged[Math.floor(Math.random() * 100)];
+      let review_date = momentRandom('11/25/2021', '12/25/2020').format('YYYY-MM-DD');
+      let headline = dataStuff[Math.floor(Math.random() * 1000)].headline;
+      let full_text = dataStuff[Math.floor(Math.random() * 1000)].full_text;
+      let helpful = Math.floor(Math.random() * 40);
+      let verified_purchase = (Math.random() <= 0.7) ? 1 : 0;
+      let product_photo = dataStuff[Math.floor(Math.random() * 1000)].product_photo;
+      // if (Math.random() >= 0.75) {
+      //   product_photo = s3domain + s3Urls[Math.floor(Math.random() * 20)];
+      // }
+      let params = [product_id, user_id, overall_rating, review_date, headline, full_text, helpful, verified_purchase, product_photo];
+  return `${product_id}| ${user_id}| ${overall_rating}| ${review_date}| ${headline}| ${full_text}| ${helpful}| ${verified_purchase}| ${product_photo}\n`
+}
+
+function ArrayStuff(){
+  var resultArr = [];
+  for(var i =0; i < 1000; i++) {
+    var obj = {
+      headline: faker.random.words(Math.floor(Math.random() * 4) + 2),
+      full_text: faker.random.words(Math.floor(Math.random() * (45 - 22) ) + 22),
+      product_photo: faker.image.imageUrl(),
+      product_name: faker.commerce.productName()
+    }
+    resultArr.push(obj);
+  }
+  return resultArr;
+}
+
+Stream4.write(JSON.stringify(ArrayStuff()));
+
+// writeSomeProducts();
+// writeSomeUsers();
+// writeSomeReviews();
 
 //write headers once
 Stream1.write('product_name\n');
 Stream2.write('user_name, country, avatar\n');
 Stream3.write('product_id, user_id, overall_rating, review_date, headline, full_text, helpful, verified_purchase, product_photo\n')
-
 
 let s3AvatarDomain = 'https://hr-fec.s3.us-east-2.amazonaws.com/random-avatars/';
 
@@ -55,114 +104,66 @@ write()
 
 writeTenMillionReviews(Stream3, 'utf-8', () => {
   Stream3.end();
-  console.log('reviews done')
+  console.log('Reviews Done')
 });
 
-// function writeTenMillionProducts(writer, encoding, callback) {
-//   let i = 10000000;
-//   let id = 0;
-//   function write() {
-//     let ok = true;
-//     do {
-//       i -= 1;
-//       id += 1;
-//       const data = writeSomeProducts();
-//       if (i === 0) {
-//         writer.write(data, encoding, callback);
-//       } else {
-//         ok = writer.write(data, encoding);
-//       }
-//     } while (i > 0 && ok);
-//     if (i > 0) {
-//       writer.once('drain', write);
-//     }
-//   }
-// write()
-// }
-
-// writeTenMillionProducts(Stream1, 'utf-8', () => {
-//   Stream1.end();
-// });
-
-// function writeTenMillionUsers(writer, encoding, callback) {
-//   let i = 10000;
-//   let id = 0;
-//   function write() {
-//     let ok = true;
-//     do {
-//       i -= 1;
-//       id += 1;
-//       const data = writeSomeUsers();
-//       if (i === 0) {
-//         writer.write(data, encoding, callback);
-//       } else {
-//         ok = writer.write(data, encoding);
-//       }
-//     } while (i > 0 && ok);
-//     if (i > 0) {
-//       writer.once('drain', write);
-//     }
-//   }
-// write()
-// }
-
-// writeTenMillionUsers(Stream2, 'utf-8', () => {
-//   Stream2.end();
-//   console.log('users done');
-// });
-
-// function writeSomeProducts() {
-//     var tObj = Math.floor(Math.random() * 1000);
-//     let randomProductName = dataStuff[tObj].product_name;
-//     return `${randomProductName}\n`;
-// }
-
-function writeSomeUsers() {
-    let randomUserName = faker.internet.userName();
-    let randomCountry = (Math.random() <= .7) ? 'the United States' : faker.address.country();
-    let randomAvatar = faker.image.imageUrl();
-    //let randomAvatar = s3AvatarDomain + randomAvatars[i];
-    return `${randomUserName}| ${randomCountry}| ${randomAvatar}\n`;
-}
-
-function writeSomeReviews() {
-        let product_id = Math.floor(Math.random() * 9999999) + 1;
-        let user_id = Math.floor(Math.random() * 9999) + 1;
-        let overall_rating = merged[Math.floor(Math.random() * 100)];
-        let review_date = momentRandom('11/25/2021', '12/25/2020').format('YYYY-MM-DD');
-        let headline = dataStuff[Math.floor(Math.random() * 1000)].headline;
-        let full_text = dataStuff[Math.floor(Math.random() * 1000)].full_text;
-        let helpful = Math.floor(Math.random() * 40);
-        let verified_purchase = (Math.random() <= 0.7) ? 1 : 0;
-        let product_photo = dataStuff[Math.floor(Math.random() * 1000)].product_photo;
-        // if (Math.random() >= 0.75) {
-        //   product_photo = s3domain + s3Urls[Math.floor(Math.random() * 20)];
-        // }
-        let params = [product_id, user_id, overall_rating, review_date, headline, full_text, helpful, verified_purchase, product_photo];
-    return `${product_id}| ${user_id}| ${overall_rating}| ${review_date}| ${headline}| ${full_text}| ${helpful}| ${verified_purchase}| ${product_photo}\n`
-  }
-
-//make array of 1k objects
-//each object has headline, full text, product_photo, random_username, random_avatar
-function ArrayStuff(){
-  var resultArr = [];
-  for(var i =0; i < 1000; i++) {
-    var obj = {
-      headline: faker.random.words(Math.floor(Math.random() * 4) + 2),
-      full_text: faker.random.words(Math.floor(Math.random() * (45 - 22) ) + 22),
-      product_photo: faker.image.imageUrl(),
-      product_name: faker.commerce.productName()
+function writeTenMillionProducts(writer, encoding, callback) {
+  let i = 10000000;
+  let id = 0;
+  function write() {
+    let ok = true;
+    do {
+      i -= 1;
+      id += 1;
+      const data = writeSomeProducts();
+      if (i === 0) {
+        writer.write(data, encoding, callback);
+      } else {
+        ok = writer.write(data, encoding);
+      }
+    } while (i > 0 && ok);
+    if (i > 0) {
+      writer.once('drain', write);
     }
-    resultArr.push(obj);
   }
-  return resultArr;
+write()
 }
 
+writeTenMillionProducts(Stream1, 'utf-8', () => {
+  Stream1.end();
+  console.log('Products Done')
+});
 
-//Stream4.write(JSON.stringify(ArrayStuff()));
-// writeSomeProducts();
-// writeSomeUsers();
-// writeSomeReviews();
+function writeTenMillionUsers(writer, encoding, callback) {
+  let i = 10000;
+  let id = 0;
+  function write() {
+    let ok = true;
+    do {
+      i -= 1;
+      id += 1;
+      const data = writeSomeUsers();
+      if (i === 0) {
+        writer.write(data, encoding, callback);
+      } else {
+        ok = writer.write(data, encoding);
+      }
+    } while (i > 0 && ok);
+    if (i > 0) {
+      writer.once('drain', write);
+    }
+  }
+write()
+}
+
+writeTenMillionUsers(Stream2, 'utf-8', () => {
+  Stream2.end();
+  console.log('Users Done');
+});
+
+
+
+
 
 
 

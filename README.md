@@ -14,3 +14,5 @@ Delete a product name | DELETE | /api/deleteProduct
 
 Port = 3004;
 
+1) npm install
+2) npm run 

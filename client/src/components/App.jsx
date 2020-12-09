@@ -34,7 +34,7 @@ class App extends Component {
     axios.get(`/api/reviews/${randomProductId}`)
       .then(results => {
         this.setState({
-          reviews: results.data,
+          reviews: results.data.rows,
           pageLoaded: true
         });
       })

@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./db');
+const postgres = require('./postgres.js');
 
 const mongo = require('./mongo.js');
 
@@ -17,17 +18,18 @@ app.use(express.json());
 app.use(morgan('tiny'));
 
 // Get all reviews for product ID
-app.get('/api/reviews/:id', (req, res) => {
-  // console.log(req.params.id);
-  console.log('request was made here-------');
-  db.query(`SELECT reviews.product_id, reviews.user_id, reviews.overall_rating, reviews.review_date, reviews.headline, reviews.full_text, reviews.helpful, reviews.verified_purchase, reviews.product_photo, users.user_name, users.country, users.avatar FROM reviews INNER JOIN users ON reviews.user_id=users.id WHERE product_id=?`, [req.params.id], (err, results) => {
-    if (err) {
-      res.status(404).send('There was an error in accessing the database');
-    } else {
-      res.status(200).json(results);
-    }
-  });
+app.get('/api/reviews/:id', async function (req, res) {
+  try{
+   console.log("req.params", req.params.id)
+   var results = await postgres.readMain(req.params.id);
+   console.log('results', results)
+   res.status(200).json(results);
+  } catch (err) {
+    res.status(404).send(err.message);
+    console.log('Error Reading Main Info')
+  }
 });
+
 
 app.post('/api/writeReview', async function (req, res) {
   try{
@@ -50,7 +52,7 @@ app.post('/api/writeUser', async function (req, res) {
 
 app.post('/api/writeProduct', async function (req, res) {
   try{
-    await models.writeProductName(req.body.product);
+    await postgres.writeProduct(req.body.product);
     res.status(200).send({});
   } catch (err) {
     res.status(404).send(err.message);
@@ -60,7 +62,8 @@ app.post('/api/writeProduct', async function (req, res) {
 
 app.put('/api/updateProductName', async function (req, res) {
   try{
-    await models.updateProduct(req.body.product)
+    console.log('req.body.product', req.body.product)
+    await postgres.updateProduct(req.body.product)
     res.status(200).send({})
   } catch (err) {
     res.status(404).send(err.message);
@@ -69,7 +72,7 @@ app.put('/api/updateProductName', async function (req, res) {
 
 app.delete('/api/deleteProduct', async function (req, res) {
   try{
-    await models.deleteProduct(req.body.product)
+    await postgres.deleteProduct(req.body.product)
     res.status(200).send({})
   } catch (err) {
     res.status(404).send(err.message);
