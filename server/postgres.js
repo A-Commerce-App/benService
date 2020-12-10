@@ -72,7 +72,6 @@ deleteProduct = function(productName) {
   })
 }
 
-
 module.exports = {
   writeProduct,
   readMain,

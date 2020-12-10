@@ -1,0 +1,28 @@
+{
+  "config": {
+    "target": "http://localhost:3004",
+    "phases": [
+      {
+        "duration": 600,
+        "arrivalRate": 100
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "flow": [
+        {
+          "get": {
+            "url": "/api/reviews/100000"
+          },
+          "post": {
+            "url": "/api/writeProduct",
+            "json": {
+              "product": "BOOM!"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

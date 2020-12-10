@@ -4,5 +4,6 @@ client/dist/bundle.js
 postgresProducts.csv
 postgresReviews.csv
 postgresUsers.csv
+newrelic.js
 
 *.pem
