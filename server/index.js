@@ -18,10 +18,14 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.json());
 app.use(morgan('tiny'));
 
+console.log('hello good sir does this runneth?')
+
 const port = process.env.PORT || 3004;
 app.listen(port, () => {
   console.log(`The server is listening on port ${port}...`);
 });
+
+
 
 // Get all reviews for product ID
 app.get('/api/reviews/:id', async function (req, res) {
@@ -88,7 +92,7 @@ app.delete('/api/deleteProduct', async function (req, res) {
 })
 
 
-console.log('hello good sir does this runneth?')
+
 
 
 
