@@ -18,6 +18,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.json());
 app.use(morgan('tiny'));
 
+const port = process.env.PORT || 3004;
+app.listen(port, () => {
+  console.log(`The server is listening on port ${port}...`);
+});
+
 // Get all reviews for product ID
 app.get('/api/reviews/:id', async function (req, res) {
   try{
@@ -83,10 +88,7 @@ app.delete('/api/deleteProduct', async function (req, res) {
 })
 
 
-const port = process.env.PORT || 3004;
-app.listen(port, () => {
-  console.log(`The server is listening on port ${port}...`);
-});
+
 
 // mongo.db.on('error', () => {console.log('error connecting to DB')});
 // mongo.db.once('open', function(){
