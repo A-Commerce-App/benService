@@ -7,7 +7,7 @@ const postgres = require('./postgres.js');
 //const mongo = require('./mongo.js');
 
 const morgan = require('morgan');
-const models = require('./models.js');
+//const models = require('./models.js');
 
 const app = express();
 
@@ -32,24 +32,24 @@ app.get('/api/reviews/:id', async function (req, res) {
 });
 
 
-app.post('/api/writeReview', async function (req, res) {
-  try{
-    await models.writeReview(req.body.review);
-    res.status(200).send({});
-  } catch (err) {
-    res.status(404).send(err.message);
-  }
-});
+// app.post('/api/writeReview', async function (req, res) {
+//   try{
+//     await models.writeReview(req.body.review);
+//     res.status(200).send({});
+//   } catch (err) {
+//     res.status(404).send(err.message);
+//   }
+// });
 
-app.post('/api/writeUser', async function (req, res) {
-  try{
-    console.log('req.body', req.body.user)
-    await models.writeUser(req.body.user);
-    res.status(200).send({});
-  } catch (err) {
-    res.status(404).send(err.message);
-  }
-});
+// app.post('/api/writeUser', async function (req, res) {
+//   try{
+//     console.log('req.body', req.body.user)
+//     await models.writeUser(req.body.user);
+//     res.status(200).send({});
+//   } catch (err) {
+//     res.status(404).send(err.message);
+//   }
+// });
 
 app.post('/api/writeProduct', async function (req, res) {
   try{
