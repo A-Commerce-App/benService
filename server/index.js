@@ -22,7 +22,9 @@ app.use(morgan('tiny'));
 app.get('/api/reviews/:id', async function (req, res) {
   try{
    //console.log("req.params", req.params.id)
+   console.log('is this also working?')
    var results = await postgres.readMain(req.params.id);
+   console.log('is this working??')
    //console.log('results', results)
    res.status(200).json(results);
   } catch (err) {
