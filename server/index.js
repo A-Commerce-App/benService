@@ -88,6 +88,8 @@ app.delete('/api/deleteProduct', async function (req, res) {
 })
 
 
+console.log('hello good sir does this runneth?')
+
 
 
 // mongo.db.on('error', () => {console.log('error connecting to DB')});
