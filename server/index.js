@@ -30,6 +30,7 @@ app.get('/api/reviews/:id', async function (req, res) {
   try{
    //console.log("req.params", req.params.id)
    console.log('is this also working?')
+   console.log('req.params.id', req.params.id)
    var results = await postgres.readMain(req.params.id);
    console.log('is this working??')
    //console.log('results', results)
