@@ -30,7 +30,8 @@ const writeProduct = function(productName) {
   })
 },
 
-const readMain = function(productId) {
+readMain = function(productId) {
+  console.log('Is running inside read main')
   return new Promise((resolve, reject) => {
     client.query(`SELECT *  FROM reviews INNER JOIN users ON reviews.user_id=users.id WHERE product_id='${productId}'`, (err, results, fields) => {
       if(err) {
