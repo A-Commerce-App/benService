@@ -39,21 +39,21 @@ function writeSomeReviews() {
   return `${product_id}| ${user_id}| ${overall_rating}| ${review_date}| ${headline}| ${full_text}| ${helpful}| ${verified_purchase}| ${product_photo}\n`
 }
 
-function ArrayStuff(){
-  var resultArr = [];
-  for(var i =0; i < 1000; i++) {
-    var obj = {
-      headline: faker.random.words(Math.floor(Math.random() * 4) + 2),
-      full_text: faker.random.words(Math.floor(Math.random() * (45 - 22) ) + 22),
-      product_photo: faker.image.imageUrl(),
-      product_name: faker.commerce.productName()
-    }
-    resultArr.push(obj);
-  }
-  return resultArr;
-}
+// function ArrayStuff(){
+//   var resultArr = [];
+//   for(var i =0; i < 1000; i++) {
+//     var obj = {
+//       headline: faker.random.words(Math.floor(Math.random() * 4) + 2),
+//       full_text: faker.random.words(Math.floor(Math.random() * (45 - 22) ) + 22),
+//       product_photo: faker.image.imageUrl(),
+//       product_name: faker.commerce.productName()
+//     }
+//     resultArr.push(obj);
+//   }
+//   return resultArr;
+// }
 
-Stream4.write(JSON.stringify(ArrayStuff()));
+// Stream4.write(JSON.stringify(ArrayStuff()));
 
 // writeSomeProducts();
 // writeSomeUsers();
@@ -107,59 +107,59 @@ writeTenMillionReviews(Stream3, 'utf-8', () => {
   console.log('Reviews Done')
 });
 
-function writeTenMillionProducts(writer, encoding, callback) {
-  let i = 10000000;
-  let id = 0;
-  function write() {
-    let ok = true;
-    do {
-      i -= 1;
-      id += 1;
-      const data = writeSomeProducts();
-      if (i === 0) {
-        writer.write(data, encoding, callback);
-      } else {
-        ok = writer.write(data, encoding);
-      }
-    } while (i > 0 && ok);
-    if (i > 0) {
-      writer.once('drain', write);
-    }
-  }
-write()
-}
+// function writeTenMillionProducts(writer, encoding, callback) {
+//   let i = 10000000;
+//   let id = 0;
+//   function write() {
+//     let ok = true;
+//     do {
+//       i -= 1;
+//       id += 1;
+//       const data = writeSomeProducts();
+//       if (i === 0) {
+//         writer.write(data, encoding, callback);
+//       } else {
+//         ok = writer.write(data, encoding);
+//       }
+//     } while (i > 0 && ok);
+//     if (i > 0) {
+//       writer.once('drain', write);
+//     }
+//   }
+// write()
+// }
 
-writeTenMillionProducts(Stream1, 'utf-8', () => {
-  Stream1.end();
-  console.log('Products Done')
-});
+// writeTenMillionProducts(Stream1, 'utf-8', () => {
+//   Stream1.end();
+//   console.log('Products Done')
+// });
 
-function writeTenMillionUsers(writer, encoding, callback) {
-  let i = 10000;
-  let id = 0;
-  function write() {
-    let ok = true;
-    do {
-      i -= 1;
-      id += 1;
-      const data = writeSomeUsers();
-      if (i === 0) {
-        writer.write(data, encoding, callback);
-      } else {
-        ok = writer.write(data, encoding);
-      }
-    } while (i > 0 && ok);
-    if (i > 0) {
-      writer.once('drain', write);
-    }
-  }
-write()
-}
+// function writeTenMillionUsers(writer, encoding, callback) {
+//   let i = 10000;
+//   let id = 0;
+//   function write() {
+//     let ok = true;
+//     do {
+//       i -= 1;
+//       id += 1;
+//       const data = writeSomeUsers();
+//       if (i === 0) {
+//         writer.write(data, encoding, callback);
+//       } else {
+//         ok = writer.write(data, encoding);
+//       }
+//     } while (i > 0 && ok);
+//     if (i > 0) {
+//       writer.once('drain', write);
+//     }
+//   }
+// write()
+// }
 
-writeTenMillionUsers(Stream2, 'utf-8', () => {
-  Stream2.end();
-  console.log('Users Done');
-});
+// writeTenMillionUsers(Stream2, 'utf-8', () => {
+//   Stream2.end();
+//   console.log('Users Done');
+// });
 
 
 
