@@ -25,8 +25,6 @@ app.listen(port, () => {
   console.log(`The server is listening on port ${port}...`);
 });
 
-
-
 // Get all reviews for product ID
 app.get('/api/reviews/:id', async function (req, res) {
   try{

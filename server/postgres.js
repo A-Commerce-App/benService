@@ -30,7 +30,7 @@ const writeProduct = function(productName) {
   })
 },
 
-readMain = function(productId) {
+const readMain = function(productId) {
   return new Promise((resolve, reject) => {
     client.query(`SELECT *  FROM reviews INNER JOIN users ON reviews.user_id=users.id WHERE product_id='${productId}'`, (err, results, fields) => {
       if(err) {
